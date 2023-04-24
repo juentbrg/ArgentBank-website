@@ -1,0 +1,33 @@
+.navigation{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+    height: 65px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    &__logo{
+        object-fit: cover;
+        width: 200px;
+        height: 55px;
+    }
+    &__signIn{
+        display: flex;
+    }
+    &__userImage{
+        width: 15px;
+        height: 15px;
+    }
+    &__signInLink{
+        color: black;
+        text-decoration: none;
+    }
+    &__signButton{
+        font-size: 14px;
+        font-weight: 600;
+        margin-left: 5px;
+        cursor: pointer;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+}
