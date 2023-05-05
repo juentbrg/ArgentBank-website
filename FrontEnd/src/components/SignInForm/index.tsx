@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { signInUser } from '../../features/authSlice'
 import { AppDispatch } from '../../app/store'
+import { getUser } from '../../features/userSlice'
 
 const SignInForm = () => {
   const dispatch = useDispatch<AppDispatch>()
@@ -14,6 +15,7 @@ const SignInForm = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     dispatch(signInUser({ email, password }))
+    dispatch(getUser())
   }
 
   return (
