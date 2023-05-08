@@ -17,14 +17,27 @@
         width: 15px;
         height: 15px;
     }
+    &__user{
+        display: flex;
+        margin-right: 15px;
+    }
+    &__userName{
+        font-size: 15px;
+        font-weight: 600;
+        margin-left: 3px;
+        letter-spacing: .5px;
+    }
     &__signInLink{
         color: black;
         text-decoration: none;
     }
-    &__signButton{
-        font-size: 14px;
+    &__signOutContainer{
+        display: flex;
+    }
+    &__signInButton, &__signOutButton{
+        font-size: 15px;
         font-weight: 600;
-        margin-left: 5px;
+        margin-left: 3px;
         cursor: pointer;
         &:hover{
             text-decoration: underline;

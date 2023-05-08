@@ -21,7 +21,6 @@ export const signInUser = createAsyncThunk('auth/login', async (body: SignInBody
       body: JSON.stringify(body),
     })
     const data = await response.json()
-    console.log(data)
     return data
 })
 

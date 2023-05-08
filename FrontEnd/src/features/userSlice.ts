@@ -1,4 +1,5 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createSelector, createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../app/store";
 
 interface userState {
     message: string;
@@ -8,18 +9,18 @@ interface userState {
     userName: string;
     id: string;
     error: string;
-    fetching: boolean;
+    isLoggedIn: boolean;
 }
 
 const initialState: userState = {
     message: "",
     email: "",
-    firstName: "",
-    lastName: "",
-    userName: "",
+    firstName: localStorage.getItem("firstName") || '',
+    lastName: localStorage.getItem("lastName") || '',
+    userName: localStorage.getItem("userName") || '',
     id: "",
     error: "",
-    fetching: false,
+    isLoggedIn: localStorage.getItem("isLoggedIn") === "true" || false,
 }
 
 export const getUser = createAsyncThunk('user/get', async () => {
@@ -32,7 +33,6 @@ export const getUser = createAsyncThunk('user/get', async () => {
         }
     })
     const data = await response.json()
-    console.log(data)
     return data
 })
 
@@ -47,32 +47,33 @@ const userSlice = createSlice({
             state.userName = localStorage.getItem("userName") || action.payload
             state.id = localStorage.getItem("id") || action.payload
         },
-        removeProfile: (state) => {
+        clearProfile: (state) => {
             state.email = ""
             state.firstName = ""
             state.lastName = ""
             state.userName = ""
             state.id = ""
-            state.fetching = false
+            state.isLoggedIn = false
             localStorage.clear()
         }
     },
     extraReducers:{
         [getUser.pending.type]: (state, action) => { 
-            state.fetching = true;
+            state.isLoggedIn = false;
         },
         [getUser.fulfilled.type]: (state, {payload:{message, body :{email, firstName, lastName, userName, id, error}}}) => {
-            state.fetching = false;
             if(error){
                 state.error = error;
             } else {
+                state.isLoggedIn = true;
                 state.message = message;
                 state.email = email;
                 state.firstName = firstName;
                 state.lastName = lastName;
                 state.userName = userName;
                 state.id = id;
-
+                
+                localStorage.setItem('isLoggedIn', "true");
                 localStorage.setItem('message', message)
                 localStorage.setItem('email', email)
                 localStorage.setItem('firstName', firstName)
@@ -82,11 +83,16 @@ const userSlice = createSlice({
             }
         },
         [getUser.rejected.type]: (state, action) => {         
-            state.fetching = false;
+            state.isLoggedIn = false;
             state.error = "An error occurred while fetching user.";
         },
     }
 })
 
-export const {addProfile, removeProfile} = userSlice.actions;
+export const {addProfile, clearProfile} = userSlice.actions;
+export const selectIsLoggedIn = createSelector(
+    (state: RootState) => state.user.isLoggedIn,
+    (isLoggedIn) => isLoggedIn
+);
+
 export default userSlice.reducer;

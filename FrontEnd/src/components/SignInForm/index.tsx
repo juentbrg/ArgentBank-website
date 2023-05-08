@@ -1,22 +1,29 @@
 import './index.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { AppDispatch, RootState } from '../../app/store'
 import { signInUser } from '../../features/authSlice'
-import { AppDispatch } from '../../app/store'
 import { getUser } from '../../features/userSlice'
+import { useNavigate } from 'react-router-dom'
 
 const SignInForm = () => {
   const dispatch = useDispatch<AppDispatch>()
+  const navigate = useNavigate()
+  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    dispatch(signInUser({ email, password }))
+    await dispatch(signInUser({ email, password }))
     dispatch(getUser())
   }
+
+  useEffect(() => {
+    isLoggedIn && navigate('/profile')
+  }, [isLoggedIn, navigate])
 
   return (
     <section className="signIn">
