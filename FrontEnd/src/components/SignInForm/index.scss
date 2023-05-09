@@ -4,7 +4,6 @@
     position: fixed;
     background-color: white;
     width: 300px;
-    height: 362px;
     padding: 2rem;
     left: 50%;
     top: 115px;
@@ -37,6 +36,12 @@
             margin-left: 6px;
             font-weight: 500;
         }
+    }
+    &__error{
+        margin-top: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        color: red;
     }
     &__submit{
         width: 100%;

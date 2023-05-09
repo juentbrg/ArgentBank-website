@@ -12,6 +12,13 @@ interface SignInBody {
     password: string;
 }
 
+const initialState: AuthState = {
+    message: "",
+    token: "",
+    error: "",
+    loading: false,
+}
+
 export const signInUser = createAsyncThunk('auth/login', async (body: SignInBody) => {
     const response = await fetch('http://localhost:3001/api/v1/user/login', {
       method: 'POST',
@@ -20,16 +27,14 @@ export const signInUser = createAsyncThunk('auth/login', async (body: SignInBody
       },
       body: JSON.stringify(body),
     })
+    if (!response.ok) {
+        const data = await response.json()
+        const error = data.message
+        throw new Error(error);
+    }
     const data = await response.json()
     return data
 })
-
-const initialState: AuthState = {
-    message: "",
-    token: "",
-    error: "",
-    loading: false,
-}
 
 const authSlice = createSlice({
     name: 'auth',
@@ -39,6 +44,7 @@ const authSlice = createSlice({
             state.token = localStorage.getItem("token") || action.payload;
         },
         logout: (state) => {
+            state.message = "";
             state.token = "";
             state.loading = false;
             state.error = "";
@@ -63,7 +69,7 @@ const authSlice = createSlice({
         },
         [signInUser.rejected.type]: (state, action) => {         
             state.loading = false;
-            state.error = "An error occurred while logging in.";
+            state.error = action.error.message;
         },
     }
 })

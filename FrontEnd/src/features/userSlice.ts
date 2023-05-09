@@ -48,6 +48,7 @@ const userSlice = createSlice({
             state.id = localStorage.getItem("id") || action.payload
         },
         clearProfile: (state) => {
+            state.message = ""
             state.email = ""
             state.firstName = ""
             state.lastName = ""

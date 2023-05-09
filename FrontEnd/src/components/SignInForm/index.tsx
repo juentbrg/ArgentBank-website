@@ -12,6 +12,7 @@ const SignInForm = () => {
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn)
+  const error = useSelector((state: RootState) => state.auth.error)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -60,6 +61,7 @@ const SignInForm = () => {
           <label htmlFor="remember">Remember me</label>
           <input type="checkbox" name="remember" id="remember" />
         </div>
+        {error && <p className="signIn__error">{error}</p>}
         <button className="signIn__submit" type="submit" id="signIn__btn">
           Sign In
         </button>
