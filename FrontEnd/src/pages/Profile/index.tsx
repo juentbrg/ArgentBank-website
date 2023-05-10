@@ -2,7 +2,9 @@ import './index.scss'
 import Footer from '../../components/Footer'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../app/store'
+import { useState } from 'react'
 import Transaction from '../../components/Transaction'
+import UserChangeForm from '../../components/UserChangeForm'
 
 const transactionItem = [
   {
@@ -29,6 +31,11 @@ const Profile = () => {
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn)
   const firstName = useSelector((state: RootState) => state.user.firstName)
   const lastName = useSelector((state: RootState) => state.user.lastName)
+  const [showModal, setShowModal] = useState(false)
+
+  const toggleModal = () => {
+    setShowModal(!showModal)
+  }
 
   return (
     <>
@@ -41,7 +48,10 @@ const Profile = () => {
               <p className="profile__lastName">{lastName}!</p>
             </div>
           )}
-          <button className="profile__editNameButton">Edit Name</button>
+          <button className="profile__editNameButton" onClick={toggleModal}>
+            Edit Name
+          </button>
+          {showModal && <UserChangeForm closeModal={toggleModal} />}
         </div>
         <section className="transactionItems">
           {transactionItem.map((item, index) => (
