@@ -1,0 +1,33 @@
+.transaction{
+    display: flex;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    background-color: white;
+    &__left{
+        width: 85%;
+    }
+    &__right{
+        width: 15%;
+        display: flex;
+        align-items: center;
+    }
+    &__type, &__status{
+        font-size: 15px;
+        color: #2c3e50; 
+    }
+    &__amount{
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #2c3e50; 
+    }
+    &__btn{
+        width: 100%;
+        padding: 8px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        border-color: #00bc77;
+        background-color: #00bc77;
+        color: #fff;
+        cursor: pointer;
+    }
+}
