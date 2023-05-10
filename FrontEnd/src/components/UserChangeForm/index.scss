@@ -48,7 +48,7 @@
     &__submit{
         width: 100%;
         height: 36px;
-        margin-top: 16px;
+        margin-top: 14px;
         border: none;
         background-color: #00bc77;
         font-size: 1.1rem;
@@ -56,5 +56,17 @@
         color: white;
         text-decoration: underline;
         cursor: pointer;
+    }
+    &__error{
+        margin-top: 14px;
+        font-size: 14px;
+        font-weight: 600;
+        color: red;
+    }
+    &__succeeded{
+        margin-top: 14px;
+        font-size: 14px;
+        font-weight: 600;
+        color: green;
     }
 }
