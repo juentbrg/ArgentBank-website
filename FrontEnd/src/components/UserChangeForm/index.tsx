@@ -20,7 +20,7 @@ const UserChangeForm = ({ closeModal }: UserChangeFormProps) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     await dispatch(changeUserName({ userName }))
-    await setTimeout(() => {
+    setTimeout(() => {
       dispatch(setSucceeded(false))
       closeModal()
     }, 2000)

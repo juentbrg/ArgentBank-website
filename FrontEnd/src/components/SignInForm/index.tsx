@@ -8,7 +8,11 @@ import { signInUser } from '../../features/authSlice'
 import { getUser } from '../../features/userSlice'
 import { useNavigate } from 'react-router-dom'
 
-const SignInForm = () => {
+interface UserSignInProps {
+  toggleSignUp: () => void
+}
+
+const SignInForm = ({ toggleSignUp }: UserSignInProps) => {
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn)
@@ -66,6 +70,12 @@ const SignInForm = () => {
           Sign In
         </button>
       </form>
+      <p className="signIn__signUp">
+        Or{' '}
+        <span className="signIn__signUpLink" onClick={toggleSignUp}>
+          sign up
+        </span>
+      </p>
     </section>
   )
 }

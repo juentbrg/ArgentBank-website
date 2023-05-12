@@ -16,7 +16,7 @@ const initialState: UserNameState = {
     userName: '',
     message: '',
     error: '',
-    succeeded: true,
+    succeeded: false,
     loading: false,
 }
 

@@ -1,4 +1,4 @@
-.signIn{
+.signUp{
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -14,10 +14,7 @@
         color: #2c3e50;
         text-align: center;
     }
-    &__username{
-        margin-bottom: 16px;
-    }
-    &__password{
+    &__firstName, &__lastName, &__userName, &__email, &__password{
         margin-bottom: 16px;
     }
     &__label{
@@ -27,21 +24,6 @@
     &__input{
         width: 100%;
         height: 36px;
-    }
-    &__remember{
-        display: flex;
-        flex-direction: row-reverse;
-        justify-content: left;
-        label{
-            margin-left: 6px;
-            font-weight: 500;
-        }
-    }
-    &__error{
-        margin-top: 10px;
-        font-size: 14px;
-        font-weight: 600;
-        color: red;
     }
     &__submit{
         width: 100%;
@@ -55,13 +37,25 @@
         text-decoration: underline;
         cursor: pointer;
     }
-    &__signUp{
+    &__error{
+        margin-top: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        color: red;
+    }
+    &__succeeded{
+        margin-top: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        color: green;
+    }
+    &__signIn{
         margin-top: 10px;
         font-size: 15px;
     }
-    &__signUpLink{
+    &__signInLink{
         text-decoration: underline;
         color: #00bc77;
-        cursor: pointer;
+        cursor: pointer; 
     }
 }
