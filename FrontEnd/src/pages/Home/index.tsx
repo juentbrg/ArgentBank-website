@@ -2,10 +2,10 @@ import './index.scss'
 import Banner from '../../components/Banner'
 import Features from '../../components/Features'
 import Footer from '../../components/Footer'
-import bannerImg from '../../assets/bank-tree.jpeg'
-import featuresIcon1 from '../../assets/icon-chat.png'
-import featuresIcon2 from '../../assets/icon-money.png'
-import featuresIcon3 from '../../assets/icon-security.png'
+import bannerImg from '../../assets/bank-tree.webp'
+import featuresIcon1 from '../../assets/icon-chat.webp'
+import featuresIcon2 from '../../assets/icon-money.webp'
+import featuresIcon3 from '../../assets/icon-security.webp'
 
 const featuresItem = [
   {

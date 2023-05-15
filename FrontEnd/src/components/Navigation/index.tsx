@@ -1,6 +1,6 @@
 import './index.scss'
 import { Link } from 'react-router-dom'
-import logo from '../../assets/argentBankLogo.png'
+import logo from '../../assets/argentbanklogo.webp'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
@@ -28,7 +28,11 @@ const Navigation = () => {
         <div className="navigation__signIn">
           <div className="navigation__user">
             <FontAwesomeIcon icon={faUserCircle} />
-            {isLoggedIn && <p className="navigation__userName">{firstName}</p>}
+            {isLoggedIn && (
+              <Link to={'/profile'} className="navigation__userName">
+                {firstName}
+              </Link>
+            )}
           </div>
           <Link to={'/login'} className="navigation__signInLink">
             {!isLoggedIn ? (
